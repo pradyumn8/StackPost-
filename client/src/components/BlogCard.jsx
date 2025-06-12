@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
 
     const { title, description, category, image, _id } = blog;
+    const navigate = useNavigate()
 
     return (
-        <div onClick={() => Navigate(`/blog/${_id}`)}>
+        <div onClick={() => navigate(`/blog/${_id}`)} className="w-full rounded-lg overflow-hidden shadow hover:scale-102 hover:shadow-primary/25 duration-300 cursor-pointer">
             <img src={image} alt="" className='aspect-video' />
             <span className='ml-5 mt-4 px-3 py-1 inline-block bg-primay/20 rounded-full text-x5 text-[#6f1396]'>{category}</span>
             <div className='p-5'>
