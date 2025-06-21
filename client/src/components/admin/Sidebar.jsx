@@ -21,6 +21,12 @@ const Sidebar = () => {
         <p className='hidden md:inline-block'>Dashboard</p>
       </NavLink>
 
+      {/*Add Blog */}
+      <NavLink to="/admin/addBlog" className={({ isActive }) => getLinkClasses(isActive)}>
+        <img src={assets.add_icon} alt="" className='min-w-4 w-5' />
+        <p className='hidden md:inline-block'>Add Blogs</p>
+      </NavLink>
+
       {/* Blog Lists */}
       <NavLink to="/admin/listBlog" className={({ isActive }) => getLinkClasses(isActive)}>
         <img src={assets.list_icon} alt="" className='min-w-4 w-5' />
