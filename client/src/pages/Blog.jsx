@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import { assets, blog_data, comments_data } from '../assets/assets'
 import moment from 'moment'
 import Footer from '../components/Footer'
+import Loader from '../components/Loader'
 
 
 const Blog = () => {
@@ -94,9 +95,9 @@ const Blog = () => {
       <Footer/>
     </div>
 
-  ) : (
-    <div className='text-center py-10'>Loading...</div>
-  )
+  ) : 
+    <Loader/>
+  
 }
 
 export default Blog
