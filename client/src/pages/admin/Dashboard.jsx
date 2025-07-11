@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { assets, dashboard_data } from '../../assets/assets'
 import BlogTableItem from './BlogTableItem'
+import { useAppContext } from '../../context/AppContext'
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({
     blogs: 0,
     comments: 0,
     drafts: 0,
-    recentBlogs:[]
+    recentBlogs: []
   })
 
-  const fetchDashboard = async () =>{
-    setDashboardData(dashboard_data)
+  const { axios } = useAppContext();
+
+  const fetchDashboard = async () => {
+    try {
+      const { data } = await axios.get('/api/admin/dashboard');
+      data.success ? setDashboardData(data.dashboardData) : toast.error(data.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
 
   })
   return (
@@ -44,10 +52,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      
+
       <div>
         <div className='items-center p-4 flex'>
-          <img src={assets.dashboard_icon_4} alt="" className='p-4'/>
+          <img src={assets.dashboard_icon_4} alt="" className='p-4' />
           <p>Latest Blogs</p>
         </div>
 
@@ -63,9 +71,9 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {dashboardData.recentBlogs.map(()=>{
-              return <BlogTableItem key={blog._id} blog={blog}
-              fetchBlogs={fetchBlogs} index={index +1 }/>
+              {dashboardData.recentBlogs.map(() => {
+                return <BlogTableItem key={blog._id} blog={blog}
+                  fetchBlogs={fetchBlogs} index={index + 1} />
               })}
             </tbody>
           </table>
